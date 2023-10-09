@@ -153,3 +153,8 @@ drwxr-xr-x     3 wanshuo  staff          96  3 22  2022 reading/
 1. 不管是面向 Object 的 ACLs 还是面向 Subject 的 RBAC，分组后，都能够显著改善复杂度
 2. Any problem in computer science can be solved with another layer of indirection. -- David Wheeler
 
+
+## Reference
+
+- [Role-Based-Access-Control-Second-Edition](https://book.douban.com/subject/2586338/) [download](https://annas-archive.org/md5/b97cb9de7e038025784c6f1d7d9c9f58)
+- [Stanford CS155 Lecture 4: Principle of least privilege, access control, and operating systems security](https://cs155.stanford.edu/syllabus.html)
