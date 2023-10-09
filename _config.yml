@@ -1,7 +1,7 @@
 title: blog of wanshuo # name of the site
 author: wanshuo # name of site's author
 email: wanshojs@gmail.com # email of site's author
-url: http://www.wansho.top/ # root address of the site
+url: https://blog.wansho.top # root address of the site
 #baseurl: "/no-style-please" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
 description: > # description of the site (multiple lines allowed)
   stay hungry, stay foolish
