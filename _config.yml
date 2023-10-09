@@ -1,10 +1,10 @@
-title: no style, please! # name of the site
-author: Riccardo Graziosi # name of site's author
-email: riccardo.graziosi97@gmail.com # email of site's author
-url: https://riggraz.dev # root address of the site
-baseurl: "/no-style-please" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
+title: blog of wanshuo # name of the site
+author: wanshuo # name of site's author
+email: wanshojs@gmail.com # email of site's author
+url: http://www.wansho.top/ # root address of the site
+#baseurl: "/no-style-please" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
 description: > # description of the site (multiple lines allowed)
-  A (nearly) no-CSS, fast, minimalist Jekyll theme.
+  stay hungry, stay foolish
 
 permalink: /:slug.html
 
@@ -25,3 +25,4 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-pdf-embed
