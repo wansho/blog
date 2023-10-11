@@ -16,8 +16,8 @@ category: daily
 
 总体感觉，广州这座城市，很有活力，真正地富有人文关怀，不愧是改革先锋！
 
-![](/assets/image/daily/2023-10-11/luosifen.png)
+![](/assets/image/daily/2023-10-11/luosifen.jpg)
 
-![](/assets/image/daily/2023-10-11/zhujiang.png)
+![](/assets/image/daily/2023-10-11/zhujiang.jpg)
 
-![](/assets/image/daily/2023-10-11/xiaomanyao.png)
+![](/assets/image/daily/2023-10-11/xiaomanyao.jpg)
