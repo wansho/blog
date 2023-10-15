@@ -8,9 +8,9 @@ entries:
       - title: github repo
         url: https://github.com/wansho
       - title: running 🏃🏻‍♂️
-        url: running
+        url: running.html
       - title: yummy 😋
-        url: yummy
+        url: yummy.html
 
   - title: 2023
     entries:
