@@ -2,11 +2,15 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: info
+  - title: about
     entries:
       - title: stay hungry, stay foolish
       - title: github repo
         url: https://github.com/wansho
+      - title: running 🏃🏻‍♂️
+        url: running
+      - title: yummy 😋
+        url: yummy
 
   - title: 2023
     entries:
@@ -17,13 +21,20 @@ entries:
           show_more: true
           show_more_text: See archive...
           show_more_url: archive-rbac.html
-      - title: posts
+      - title: daily
         post_list:
           category: daily
           limit: 5
           show_more: true
           show_more_text: See archive...
           show_more_url: archive.html
+      - title: weekly
+        post_list:
+          category: weekly
+          limit: 5
+          show_more: true
+          show_more_text: See archive...
+          show_more_url: archive-weekly.html
 
   - title: rss
     url: feed.xml
