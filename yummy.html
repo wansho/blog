@@ -1,0 +1,168 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>Baidu Map </title>  
+    <style type="text/css">  
+        html{height:100%}  
+        body{height:100%;margin:0px;padding:0px}  
+        #container{
+          float: left; /* 让 div 靠左 */
+          width: 70%; /* 设置宽度占据父容器的 70% */
+          height: 100%;
+        }  
+        #poi{
+          float: left;
+          width: 30%;
+          height: 100%;
+        }
+    </style>  
+
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=QP8jicLhkpvN65WvTP6C8QKZwA1HLamO"></script>
+
+</head>  
+<body>
+
+  <script>
+
+
+    window.onload = function() {
+      // 在此处编写需要在页面加载完成后执行的代码
+      var map = new BMapGL.Map("container");          // 创建地图实例 
+      var point = new BMapGL.Point(118.804938,32.033373);  // 创建点坐标 
+      map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+      addMarkerAndLabel(point, "豪牛潮汕牛肉火锅");
+      map.enableScrollWheelZoom(true); 
+      var list = [
+        { 
+          longitude: 118.804734, 
+          latitude: 31.949555, 
+          name: '牛人码头潮汕牛肉火锅', 
+          checked: true 
+        },
+        { 
+          longitude: 118.804938, 
+          latitude: 32.033373, 
+          name: '豪牛潮汕牛肉火锅', 
+          checked: true 
+        },
+        { 
+          longitude: 118.835983, 
+          latitude: 31.873824, 
+          name: '鱼酷-砂之船', 
+          checked: true 
+        },
+        { 
+          longitude: 118.789531, 
+          latitude: 31.916445, 
+          name: '古的螺蛳粉', 
+          checked: true 
+        },
+        { 
+          longitude: 118.76951,
+          latitude: 32.032157, 
+          name: '鳝鱼王面', 
+          checked: true 
+        },
+        { 
+          longitude: 118.817053,
+          latitude: 31.950309, 
+          name: '佳养记·百味鸡煲', 
+          checked: true 
+        },
+        { 
+          longitude: 118.794663,
+          latitude: 31.950308, 
+          name: '南航后街，四果汤，美味豆花', 
+          checked: true 
+        },
+        { 
+          longitude: 113.313605,
+          latitude: 23.136553, 
+          name: '广州-阿园桂林米粉店(东风东路店)', 
+          checked: true 
+        },
+        { 
+          longitude: 118.847321,
+          latitude: 31.871407, 
+          name: '梅菜扣肉饼-移动摊点-早晚出摊', 
+          checked: true 
+        },
+        { 
+          longitude: 118.841756,
+          latitude: 31.916136, 
+          name: '淮南牛肉汤', 
+          checked: true 
+        },
+        { 
+          longitude: 118.846261,
+          latitude: 31.8439, 
+          name: '淮南牛肉汤', 
+          checked: true 
+        },
+        { 
+          longitude: 118.846409,
+          latitude: 31.841596, 
+          name: '鸡蛋灌饼', 
+          checked: true 
+        },
+        { 
+          longitude: 118.843122,
+          latitude: 31.846201, 
+          name: '仁忠酒楼', 
+          checked: true 
+        }
+        // 添加更多对象...
+      ];
+
+      // 创建列表容器
+      var listContainer = document.createElement('ul');
+
+      // 遍历列表数据
+      list.forEach(function(item) {
+        // 创建列表项
+        var listItem = document.createElement('li');
+        listItem.textContent = item.name;
+        var point = new BMapGL.Point(item.longitude, item.latitude);  // 创建点坐标
+        addMarkerAndLabel(point, item.name);
+        // 添加点击事件处理程序
+        listItem.addEventListener('click', function() {
+          // 在点击事件中可以访问当前项的信息
+          map.panTo(point); // 将地图中心点定位到标记点
+          console.log('是否选中:', item.checked);
+        });
+
+        // 将列表项添加到列表容器中
+        listContainer.appendChild(listItem);
+      });
+
+      // 将列表容器添加到页面中的某个元素
+      var container = document.getElementById('poi');
+      container.appendChild(listContainer);
+
+      function addMarkerAndLabel(point, name) {
+        var marker = new BMapGL.Marker(point); // 创建标记点
+        map.addOverlay(marker); // 将标记点添加到地图上
+        var content = name;
+        var label = new BMapGL.Label(content, {       // 创建文本标注
+            position: point,                          // 设置标注的地理位置
+            offset: new BMapGL.Size(0, 0)           // 设置标注的偏移量
+        })  
+        map.addOverlay(label); 
+        map.panTo(point); // 将地图中心点定位到标记点
+      }
+
+    };
+    
+  </script>
+
+  <div id="container">
+
+  </div>
+
+  <div id="poi">
+  </div>
+
+</body>  
+</html>
