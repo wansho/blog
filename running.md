@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "running"
+layout: page
+title: running
 ---
 
 

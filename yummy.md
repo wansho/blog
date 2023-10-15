@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "yummy"
+layout: page
+title: yummy
 ---
 
 美食地图
