@@ -112,6 +112,18 @@
           latitude: 31.846201, 
           name: '仁忠酒楼', 
           checked: true 
+        },
+        { 
+          longitude: 120.203172,
+          latitude: 35.960255, 
+          name: '青岛-海鲜烩饼', 
+          checked: false 
+        },
+        { 
+          longitude: 119.138242,
+          latitude: 36.727097, 
+          name: '潍坊-朝天锅', 
+          checked: false 
         }
         // 添加更多对象...
       ];
@@ -150,7 +162,6 @@
             offset: new BMapGL.Size(0, 0)           // 设置标注的偏移量
         })  
         map.addOverlay(label); 
-        map.panTo(point); // 将地图中心点定位到标记点
       }
 
     };
