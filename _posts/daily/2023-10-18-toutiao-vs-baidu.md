@@ -12,3 +12,4 @@ category: daily
 
 ![](/assets/image/daily/2023-10-18/Snipaste_2023-10-18_20-20-09.jpg)
 ![](/assets/image/daily/2023-10-18/Snipaste_2023-10-18_20-20-40.jpg)
+
