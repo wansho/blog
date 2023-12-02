@@ -38,6 +38,7 @@ category: daily
 
 ![](/assets/image/daily/2023-12-02/Snipaste_2023-12-02_15-48-18.jpg)
 ![](/assets/image/daily/2023-12-02/Snipaste_2023-12-02_15-50-53.jpg)
+![](/assets/image/daily/2023-12-02/Snipaste_2023-12-02_16-20-04.jpg)
 ![](/assets/image/daily/2023-12-02/Snipaste_2023-12-02_15-52-15.jpg)
 
 果然还是人工客服管用…… 直接把我的券折现退给我了
