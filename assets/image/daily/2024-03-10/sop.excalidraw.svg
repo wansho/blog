@@ -1,0 +1,21 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1362.7084932443345 211.41993464052297" width="1362.7084932443345" height="211.41993464052297" class="excalidraw-svg">
+  <!-- svg-source:excalidraw -->
+  
+  <defs>
+    <style class="style-fonts">
+      @font-face {
+        font-family: "Virgil";
+        src: url("https://excalidraw.com/Virgil.woff2");
+      }
+      @font-face {
+        font-family: "Cascadia";
+        src: url("https://excalidraw.com/Cascadia.woff2");
+      }
+      @font-face {
+        font-family: "Assistant";
+        src: url("https://excalidraw.com/Assistant-Regular.woff2");
+      }
+    </style>
+    
+  </defs>
+  <rect x="0" y="0" width="1362.7084932443345" height="211.41993464052297" fill="#ffffff"/><g stroke-linecap="round" transform="translate(10 12.712736957215043) rotate(0 326.0670868032122 94.35359884165396)"><path d="M32 0 C161.19 -0.21, 289.15 -2.96, 620.13 0 M32 0 C250.08 0.81, 468.78 0.88, 620.13 0 M620.13 0 C640.72 2.63, 654.24 11.23, 652.13 32 M620.13 0 C642.75 -1.77, 651.24 10.75, 652.13 32 M652.13 32 C648.25 62.93, 650.02 98.01, 652.13 156.71 M652.13 32 C648.14 69.46, 648.44 107.07, 652.13 156.71 M652.13 156.71 C648.97 177.16, 640.48 188.76, 620.13 188.71 M652.13 156.71 C655.16 174.37, 642.1 191.35, 620.13 188.71 M620.13 188.71 C387.94 186.26, 156.12 185.95, 32 188.71 M620.13 188.71 C493.05 186.36, 367.78 185.62, 32 188.71 M32 188.71 C12.58 187.14, -2.94 177.89, 0 156.71 M32 188.71 C13.04 185.84, 3.84 182.46, 0 156.71 M0 156.71 C-0.98 130.15, -1.04 103.71, 0 32 M0 156.71 C0.28 129.12, 1.99 100.54, 0 32 M0 32 C3.22 13.78, 9.52 -0.8, 32 0 M0 32 C4.35 9.07, 7.89 -0.36, 32 0" stroke="#000000" stroke-width="1" fill="none"/></g><g stroke-linecap="round"><g transform="translate(14.798360337131783 79.30742694587889) rotate(0 321.1383032710762 0)"><path d="M-2.36 -0.87 C104.87 -0.66, 535.42 1.55, 643.3 1.92 M1.56 -3.81 C108.51 -4.44, 534.46 -2.12, 641.61 -2.05" stroke="#000000" stroke-width="1" fill="none"/></g></g><mask/><g transform="translate(53.96171600909514 33.67144108463651) rotate(0 67.30782318115237 17.858878422902734)"><text x="0" y="0" font-family="Helvetica, Segoe UI Emoji" font-size="31.058918996352592px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">bank.com</text></g><g stroke-linecap="round" transform="translate(710.3937454974971 10) rotate(0 321.1573738734187 92.93288174706106)"><path d="M32 0 C170.77 1.83, 308.33 0.38, 610.31 0 M32 0 C198.27 -0.34, 363.98 0.42, 610.31 0 M610.31 0 C634.6 -2.76, 644.67 7.63, 642.31 32 M610.31 0 C628.55 0.4, 640.09 11.63, 642.31 32 M642.31 32 C642.3 56.78, 645.23 82.15, 642.31 153.87 M642.31 32 C641.78 75.08, 641.27 117.43, 642.31 153.87 M642.31 153.87 C646.22 174.45, 627.83 183.33, 610.31 185.87 M642.31 153.87 C642.01 174.91, 632.48 184.4, 610.31 185.87 M610.31 185.87 C416.65 188.31, 221.56 186.72, 32 185.87 M610.31 185.87 C462.83 187.28, 316.29 187.42, 32 185.87 M32 185.87 C8.13 189.2, 1.07 176.9, 0 153.87 M32 185.87 C11.59 189.46, 2.75 172.6, 0 153.87 M0 153.87 C2.3 113.44, -1.82 68.29, 0 32 M0 153.87 C-0.54 127.71, -0.76 99.73, 0 32 M0 32 C-0.71 10.76, 11.22 2.99, 32 0 M0 32 C4.4 11.34, 12.95 -1.23, 32 0" stroke="#000000" stroke-width="1" fill="none"/></g><g stroke-linecap="round"><g transform="translate(715.1198551452999 75.59194906900069) rotate(0 316.3028048609789 0)"><path d="M2.16 1.83 C107.59 1.45, 527.55 -0.05, 632.23 -0.35 M-0.11 0.36 C104.95 0.25, 523.81 2.62, 629.79 3.09" stroke="#000000" stroke-width="1" fill="none"/></g></g><mask/><g transform="translate(753.6935136613747 30.290604758455686) rotate(0 86.71395111083984 17.589970673996902)"><text x="0" y="0" font-family="Helvetica, Segoe UI Emoji" font-size="30.59125334608157px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">attacker.com</text></g></svg>
