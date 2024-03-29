@@ -11,30 +11,26 @@ entries:
         url: running.html
       - title: poi😋
         url: poi.html
-
-  - title: 2023
-    entries:
-      - title: rbac
-        post_list:
-          category: rbac
-          limit: 5
-          show_more: true
-          show_more_text: See archive...
-          show_more_url: archive-rbac.html
-      - title: daily
-        post_list:
-          category: daily
-          limit: 5
-          show_more: true
-          show_more_text: See archive...
-          show_more_url: archive.html
-      - title: weekly
-        post_list:
-          category: weekly
-          limit: 5
-          show_more: true
-          show_more_text: See archive...
-          show_more_url: archive-weekly.html
-
+  - title: daily
+    post_list:
+      category: daily
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
+  - title: weekly
+    post_list:
+      category: weekly
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive-weekly.html
+  - title: rbac
+    post_list:
+      category: rbac
+      limit: 5
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive-rbac.html
   - title: rss
     url: feed.xml
