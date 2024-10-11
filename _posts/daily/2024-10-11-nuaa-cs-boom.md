@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "南航计算机爆炸，为什么你还要进来"
+title: "南航计算机炸了，为什么你还要进来"
 category: daily
 ---
 
