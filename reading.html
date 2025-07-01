@@ -1,0 +1,359 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=graph
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%; width: 100%;"></div>
+  <script type="text/javascript" src="https://registry.npmmirror.com/jquery/3.7.1/files/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.6.0/files/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var option;
+
+
+    var graph = {
+      "nodes": [{
+          "id": "Redis开发与运维",
+          "name": "Redis开发与运维",
+          "value": 28.685715,
+          "category": 0
+        },
+        {
+          "id": "I/O多路复用",
+          "name": "I/O多路复用",
+          "value": 4,
+          "category": 1
+        },
+        {
+          "id": "Redis单线程",
+          "name": "Redis单线程",
+          "value": 9.485714,
+          "category": 0
+        },
+        {
+          "id": "Martin Fowler: IoC",
+          "name": "Martin Fowler: IoC",
+          "desc": "Inversion of Control Containers and the Dependency Injection pattern",
+          "url": "https://martinfowler.com/articles/injection.html",
+          "value": 9.485714,
+          "category": 2
+        },
+        {
+          "id": "Martin Fowler: Patterns of Enterprise Application Architecture",
+          "name": "Martin Fowler: Patterns of Enterprise Application Architecture",
+          "desc": "企业应用架构",
+          "url": "https://martinfowler.com/books/eaa.html",
+          "value": 9.485714,
+          "category": 2
+        },
+        {
+          "id": "Operating Systems: Three Easy Pieces",
+          "name": "Operating Systems: Three Easy Pieces",
+          "desc": "操作系统导论",
+          "url": "https://book.douban.com/subject/33463930/",
+          "value": 9.485714,
+          "category": 1
+        },
+        {
+          "id": "石点头",
+          "name": "石点头",
+          "url": "https://book.douban.com/subject/3070680/",
+          "value": 9.485714,
+          "desc": "明代小说",
+          "category": 3
+        },
+        {
+          "id": "Advanced Programming in the Unix Environment",
+          "name": "Advanced Programming in the Unix Environment",
+          "url": "https://book.douban.com/subject/2284230/",
+          "value": 9.485714,
+          "desc": "UNIX环境高级编程",
+          "category": 4
+        },
+        {
+          "id": "On Java",
+          "name": "On Java",
+          "url": "https://book.douban.com/subject/35751619/",
+          "value": 9.485714,
+          "desc": "Java 编程思想",
+          "category": 5
+        },
+        {
+          "id": "Java Concurrency in Practice",
+          "name": "Java Concurrency in Practice",
+          "url": "https://book.douban.com/subject/10484692/",
+          "value": 9.485714,
+          "desc": "Java并发编程实战",
+          "category": 5
+        },
+        {
+          "id": "毕向东Java基础",
+          "name": "毕向东Java基础",
+          "value": 9.485714,
+          "desc": "只能配合视频看，不适合细嚼慢咽",
+          "category": 5
+        },
+        {
+          "id": "Java核心技术",
+          "name": "Java核心技术",
+          "value": 9.485714,
+          "desc": "在我看来，这本书更应该叫Java入门，叫Java核心技术，挺吓人的，容易把小白劝退。On Java 更适合叫Java核心技术。",
+          "category": 5
+        },
+        {
+          "id": "Java8 in Action",
+          "name": "Java8 in Action",
+          "value": 9.485714,
+          "desc": "Java1.8新特性，授人以渔",
+          "category": 5
+        },
+        {
+          "id": "Guava",
+          "name": "Google core libraries for Java",
+          "url": "https://github.com/google/guava/wiki",
+          "value": 9.485714,
+          "category": 5
+        },
+        {
+          "id": "SpringBoot揭秘",
+          "name": "SpringBoot揭秘",
+          "value": 9.485714,
+          "category": 6
+        },
+        {
+          "id": "Expert One-on-One J2EE Design and Development",
+          "name": "Expert One-on-One J2EE Design and Development",
+          "value": 9.485714,
+          "category": 6
+        },
+        {
+          "id": "JavaScript高级程序设计",
+          "name": "JavaScript高级程序设计",
+          "value": 9.485714,
+          "category": 7
+        },
+        {
+          "id": "React全栈：Redux+Flux+webpack+Babel整合开发",
+          "name": "React全栈：Redux+Flux+webpack+Babel整合开发",
+          "value": 9.485714,
+          "category": 7
+        },
+        {
+          "id": "JavaScript语言精粹",
+          "name": "JavaScript语言精粹",
+          "value": 9.485714,
+          "category": 7
+        }
+      ],
+      "links": [{
+          "source": "Redis开发与运维",
+          "target": "I/O多路复用",
+          "customLabel": "Redis使用epoll作为I/O多路复用技术的实现"
+        },
+        {
+          "source": "SpringBoot揭秘",
+          "target": "Expert One-on-One J2EE Design and Development",
+          "customLabel": "阐述了轻量级框架的研发理念，推出了最初版的Spring框架"
+        },
+        {
+          "source": "Redis开发与运维",
+          "target": "Redis单线程",
+          "customLabel": "Redis用单线程来处理命令，一条命令从客户端到服务端不会立即执行，所有命令都会进入一个队列中，然后逐个被执行，不会产生并发问题"
+        },
+        {
+          "source": "Martin Fowler: IoC",
+          "target": "Martin Fowler: Patterns of Enterprise Application Architecture",
+          "customLabel": ""
+        },
+        {
+          "source": "I/O多路复用",
+          "target": "Operating Systems: Three Easy Pieces",
+          "customLabel": "在百度的时候，第一次接触到多路复用，由此联想到评价很高的书"
+        },
+        {
+          "source": "Operating Systems: Three Easy Pieces",
+          "target": "Advanced Programming in the Unix Environment",
+          "customLabel": "我们说过很多次，购买这本书，然后一点一点阅读，建议在睡前阅读。这样，你实际上会更快地入睡。更重要的是，可以多学一点如何成为一名称职的 UNIX 程序员。"
+        },
+        {
+          "source": "Operating Systems: Three Easy Pieces",
+          "target": "On Java",
+          "customLabel": "学完操作系统并发的基础知识，开始学习 On Java 的第 24 章，并发编程"
+        },
+        {
+          "source": "On Java",
+          "target": "Java Concurrency in Practice",
+          "customLabel": "这本书强烈推荐的Java并发编程书"
+        },
+        {
+          "source": "On Java",
+          "target": "毕向东Java基础",
+          "customLabel": "On Java不是字典，看Java基础还是得找毕向东"
+        },
+        {
+          "source": "毕向东Java基础",
+          "target": "Java核心技术",
+          "customLabel": "毕向东的Java讲得不行，是面向非科班的，不能当做字典。目前只有Java核心技术能当做字典"
+        },
+        {
+          "source": "Java核心技术",
+          "target": "Java Concurrency in Practice",
+          "customLabel": "对于更复杂的系统级程序设计 ，建议参看更⾼级的参考文献"
+        },
+        {
+          "source": "Java核心技术",
+          "target": "Java8 in Action",
+          "customLabel": "看完Java核心技术的并发章节 <= java1.7，继续了解 Java1.8 的并发。第 7,11 章"
+        },
+        {
+          "source": "Java8 in Action",
+          "target": "Guava",
+          "customLabel": "提到了 Guava，在很多场合，频繁的遇到这个库了，要好好看看了(感觉不用看了，Guava的很多特性，在Java的新版本中都实现了)"
+        },
+        {
+          "source": "JavaScript高级程序设计",
+          "target": "React全栈：Redux+Flux+webpack+Babel整合开发",
+          "customLabel": "想学习JavaScript开发，但是JavaScript太长了有点看不进去，而且JavaScript也反复学过好多遍了，一直难以入门，学得不够深入，我感觉我已经停滞不前很久了"
+        },
+        {
+          "source": "React全栈：Redux+Flux+webpack+Babel整合开发",
+          "target": "JavaScript语言精粹",
+          "customLabel": "提到这本书被很多读者奉为圣经"
+        }
+      ],
+      "categories": [{
+          "index": 0,
+          "name": "Redis"
+        },
+        {
+          "index": 1,
+          "name": "操作系统"
+        },
+        {
+          "index": 2,
+          "name": "IoC"
+        },
+        {
+          "index": 3,
+          "name": "明清小说"
+        },
+        {
+          "index": 4,
+          "name": "UNIX"
+        },
+        {
+          "index": 5,
+          "name": "JAVA"
+        },
+        {
+          "index": 6,
+          "name": "Spring"
+        },
+        {
+          "index": 7,
+          "name": "JavaScript"
+        }
+      ]
+    };
+
+    // 计算引用数（基于出度）
+    var inDegree = {};
+    graph.nodes.forEach(node => (inDegree[node.id] = 0));
+    graph.links.forEach(link => {
+      inDegree[link.source] = (inDegree[link.source] || 0) + 1;
+    });
+
+    // 设置节点的大小
+    graph.nodes = graph.nodes.map(node => ({
+      ...node,
+      symbolSize: 5 + (inDegree[node.id] || 0) * 5, // 基础大小 10，加权值 10 * 引用数
+      label: {
+        show: true
+      }
+    }));
+
+
+    // 修改为加载当前文件夹下的本地 JSON 文件
+    option = {
+      title: {
+        text: 'reading-mind',
+        subtext: '对技术祛魅',
+        top: 'bottom',
+        left: 'center',
+        subtextStyle: {
+          fontSize: 14, // 副标题字体大小
+          color: '#666', // 副标题颜色
+        }
+      },
+      tooltip: {
+        trigger: 'item', // 鼠标悬停触发
+        formatter: function (params) {
+          if (params.dataType === 'node') {
+            return params.data.desc 
+            ? `${params.data.name}<br>${params.data.desc}` 
+            : `${params.data.name}`;
+          } else if (params.dataType === 'edge') {
+            return `${params.data.customLabel}`;
+          }
+        }
+      },
+      legend: [
+        {
+          data: graph.categories.map(function (a) {
+            return a.name;
+          }),
+          width: '90%',
+          selector: ['all', 'inverse']
+        }
+      ],
+      animationDuration: 1500,
+      animationEasingUpdate: 'quinticInOut',
+      series: [
+        {
+          name: 'reading-mind',
+          type: 'graph',
+          legendHoverLink: false,
+          layout: 'circular',
+          data: graph.nodes,
+          links: graph.links,
+          categories: graph.categories,
+          roam: true,
+          label: {
+            position: 'right',
+            formatter: '{b}'
+          },
+          lineStyle: {
+            color: 'source',
+            curveness: 0.3,
+            // 线调粗一点
+            width: 3
+          },
+          emphasis: {
+            focus: 'adjacency',
+            lineStyle: {
+              width: 10
+            }
+          },
+          // 边两端的标记类型，可以是一个数组分别指定两端，也可以是单个统一指定。默认不显示标记，常见的可以设置为箭头
+          edgeSymbol: ['none', 'arrow'],
+          // 边两端的标记大小，可以是一个数组分别指定两端，也可以是单个统一指定。
+          edgeSymbolSize: 10,
+        }
+      ]
+    };
+    myChart.setOption(option);
+
+    window.addEventListener('resize', myChart.resize);
+
+  </script>
+</body>
+</html>
