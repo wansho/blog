@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "阅读《无限可能的身体》"
+title: "《无限可能的身体》"
 category: reading
 ---
 
