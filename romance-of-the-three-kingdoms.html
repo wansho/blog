@@ -2,37 +2,297 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>三国演义路线图</title>
+  <title>三国演义路线图 - 动态流向效果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <script src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=QP8jicLhkpvN65WvTP6C8QKZwA1HLamO"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
       height: 100%;
       width: 100%;
+      font-family: "Microsoft YaHei", "SimHei", sans-serif;
+      background: #f0f2f5;
+      overflow: hidden;
     }
+    
     #map {
       height: 100%;
       width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
+    
     .custom-label {
       background: rgba(255,255,255,0.9);
-      padding: 4px 8px;
-      border-radius: 4px;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-size: 14px;
       color: #333;
-      box-shadow: 0 0 3px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border-left: 4px solid #1890ff;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    
+    .custom-label:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .custom-label strong {
+      font-size: 15px;
+      color: #1890ff;
+    }
+    
+    .control-panel {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 10;
+    }
+    
+    .panel-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e6f7ff;
+    }
+    
+    .panel-title h2 {
+      color: #1890ff;
+      font-size: 22px;
+      margin-left: 10px;
+    }
+    
+    .panel-title i {
+      background: #1890ff;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .timeline {
+      background: #e6f7ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .timeline h3 {
+      color: #1890ff;
+      font-size: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .timeline h3 i {
+      margin-right: 8px;
+    }
+    
+    .animation-controls {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .btn {
+      flex: 1;
+      margin: 0 5px;
+      padding: 12px;
+      background: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .btn:hover {
+      background: #096dd9;
+      transform: translateY(-2px);
+    }
+    
+    .btn i {
+      margin-right: 5px;
+    }
+    
+    .route-info {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      height: 150px;
+      overflow-y: auto;
+    }
+    
+    .route-info h3 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .route-info ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .route-info li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #595959;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .route-info li:last-child {
+      border-bottom: none;
+    }
+    
+    .time-period {
+      color: #1890ff;
+      font-weight: bold;
+      background: #e6f7ff;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    
+    .legend {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    
+    .flow-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff4d4f;
+      box-shadow: 0 0 10px #ff4d4f;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .flow-arrow {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .custom-marker {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1890ff;
+      border: 2px solid white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 900;
+    }
+    
+    /* 修复百度地图控件样式 */
+    .BMap_cpyCtrl, .anchorBL {
+      display: none !important;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  
+  <div class="control-panel">
+    <div class="panel-title">
+      <i class="fas fa-landmark"></i>
+      <h2>三国演义路线图</h2>
+    </div>
+    
+    <div class="timeline">
+      <h3><i class="fas fa-history"></i>路线流向控制</h3>
+      <div class="animation-controls">
+        <button id="playBtn" class="btn"><i class="fas fa-play"></i>播放</button>
+        <button id="resetBtn" class="btn"><i class="fas fa-redo"></i>重置</button>
+      </div>
+    </div>
+    
+    <div class="route-info">
+      <h3><i class="fas fa-route"></i>路线信息</h3>
+      <ul>
+        <li>
+          <span>涿郡 → 虎牢关</span>
+          <span class="time-period">公元184年 - 190年</span>
+        </li>
+        <li>
+          <span>虎牢关 → 汜水关</span>
+          <span class="time-period">公元190年</span>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background: #1890ff;"></div>
+        <span>起点/终点</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #ff4d4f;"></div>
+        <span>流动点</span>
+      </div>
+    </div>
+  </div>
+  
   <script>
+    // 修复自定义标记和流动点
     window.onload = function () {
       const map = new BMapGL.Map("map");
       map.centerAndZoom(new BMapGL.Point(112.5, 34.6), 6);
       map.enableScrollWheelZoom(true);
+      
+      // 添加底图样式
+      map.setMapStyleV2({
+        styleId: '42d40cb3e67b4ac6bfb8c21c3c8b9d8b'
+      });
 
       const points = [
         {
@@ -62,16 +322,50 @@
       ];
 
       const pointObjs = [];
+      const markers = [];
+      const lines = [];
+      const flowColors = ["#36cfc9", "#ff7a45"];
+      const flowDots = [];
+      const flowArrows = [];
+      let animationInterval = null;
+      let animationPaused = true;
 
-      points.forEach(p => {
+      // 使用自定义DOM作为标记点（修复图片加载问题）
+      points.forEach((p, index) => {
         const point = new BMapGL.Point(p.lng, p.lat);
         pointObjs.push(point);
 
-        // Marker
-        const marker = new BMapGL.Marker(point);
-        map.addOverlay(marker);
-
-        // 精简 Label
+        // 创建自定义标记元素
+        const markerElement = document.createElement('div');
+        markerElement.className = 'custom-marker';
+        document.body.appendChild(markerElement);
+        
+        // 使用百度地图的Overlay而不是Marker
+        class CustomMarker extends BMapGL.Overlay {
+          constructor(point, element) {
+            super();
+            this._point = point;
+            this._element = element;
+          }
+          
+          initialize(map) {
+            this._map = map;
+            map.getPanes().markerPane.appendChild(this._element);
+            return this._element;
+          }
+          
+          draw() {
+            const pixel = this._map.pointToOverlayPixel(this._point);
+            this._element.style.left = pixel.x + 'px';
+            this._element.style.top = pixel.y + 'px';
+          }
+        }
+        
+        const customMarker = new CustomMarker(point, markerElement);
+        map.addOverlay(customMarker);
+        markers.push(customMarker);
+        
+        // 精简Label
         const brief = `<div class="custom-label">
           <strong>${p.ancientName}</strong><br/>
           ${p.name}<br/>
@@ -79,50 +373,198 @@
         </div>`;
         const label = new BMapGL.Label(brief, {
           position: point,
-          offset: new BMapGL.Size(20, -30)
+          offset: new BMapGL.Size(20, -40)
         });
-        label.setStyle({ border: "none", background: "transparent" });
+        label.setStyle({ 
+          border: "none", 
+          background: "transparent",
+          maxWidth: '200px',
+          whiteSpace: 'nowrap'
+        });
         map.addOverlay(label);
 
         // 点击打开详细信息窗
         const infoContent = `
-          <div style="font-size:14px;">
-            <strong>${p.name}</strong><br/>
-            古地名：${p.ancientName}<br/>
-            时间：${p.time}<br/>
-            <br/>
+          <div style="font-size:14px;line-height:1.6;">
+            <strong style="font-size:16px;color:#1890ff;">${p.name}</strong><br/>
+            <div style="margin:8px 0;">
+              <span style="background:#e6f7ff;padding:2px 6px;border-radius:4px;color:#1890ff;font-weight:bold;">
+                <i class="fas fa-map-marker-alt"></i> ${p.ancientName}
+              </span>
+              <span style="background:#f6ffed;padding:2px 6px;border-radius:4px;color:#52c41a;font-weight:bold;margin-left:8px;">
+                <i class="fas fa-clock"></i> ${p.time}
+              </span>
+            </div>
             ${p.detail}
           </div>
         `;
         const infoWindow = new BMapGL.InfoWindow(infoContent, {
-          width: 280,
-          height: 120,
-          title: p.name
+          width: 300,
+          height: 140,
+          title: p.name,
+          enableMessage: true
         });
-        marker.addEventListener("click", () => {
+        
+        // 点击事件绑定
+        markerElement.addEventListener('click', () => {
           map.openInfoWindow(infoWindow, point);
         });
       });
 
-      // 绘制每一段线，带箭头
+      // 绘制每一段线
       for (let i = 0; i < pointObjs.length - 1; i++) {
         const start = pointObjs[i];
         const end = pointObjs[i + 1];
+        
         const line = new BMapGL.Polyline([start, end], {
-          strokeColor: "#1E90FF",
-          strokeWeight: 4,
-          strokeOpacity: 0.9,
-          icons: [{
-            icon: new BMapGL.Symbol('arrow', {
-            scale: 1.5,
-            strokeColor: "#0000FF",
-            strokeWeight: 2
-          }),
-            offset: '50%' // 箭头显示在中间
-          }]
+          strokeColor: flowColors[i % flowColors.length],
+          strokeWeight: 3,
+          strokeOpacity: 0.7
         });
+        
         map.addOverlay(line);
+        lines.push(line);
+        
+        // 创建流动点元素
+        const flowDot = document.createElement('div');
+        flowDot.className = 'flow-dot';
+        flowDot.style.backgroundColor = flowColors[i % flowColors.length];
+        flowDot.style.display = 'none';
+        document.body.appendChild(flowDot);
+        flowDots.push(flowDot);
+        
+        // 创建箭头元素
+        const flowArrow = document.createElement('div');
+        flowArrow.className = 'flow-arrow';
+        flowArrow.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="${flowColors[i % flowColors.length]}" d="M12 2L2 12h6v10h8V12h6L12 2z"/>
+        </svg>`;
+        flowArrow.style.display = 'none';
+        document.body.appendChild(flowArrow);
+        flowArrows.push(flowArrow);
       }
+
+      // 动画控制函数
+      function animateLines() {
+        lines.forEach((line, index) => {
+          const positions = [
+            { progress: 0.0, direction: 1 },
+            { progress: 0.3, direction: 1 },
+            { progress: 0.6, direction: 1 }
+          ];
+          
+          // 每条线有三个流动点
+          for (let i = 0; i < 3; i++) {
+            const flowType = positions[i];
+            flowType.progress += 0.003 * flowType.direction;
+            
+            if (flowType.progress > 1) {
+              flowType.progress = 0;
+            } else if (flowType.progress < 0) {
+              flowType.progress = 1;
+            }
+            
+            // 计算当前点在线上的位置
+            const path = line.getPath();
+            const pointCount = path.length;
+            const segment = Math.floor(flowType.progress * (pointCount - 1));
+            const fraction = flowType.progress * (pointCount - 1) - segment;
+            
+            const p1 = path[segment];
+            const p2 = path[Math.min(segment + 1, pointCount - 1)];
+            
+            // 插值计算
+            const lng = p1.lng + fraction * (p2.lng - p1.lng);
+            const lat = p1.lat + fraction * (p2.lat - p1.lat);
+            
+            // 将坐标转换为像素位置
+            const pixel = map.pointToOverlayPixel(new BMapGL.Point(lng, lat));
+            
+            // 显示流动点
+            const flowDot = flowDots[index * 3 + i];
+            if (flowDot) {
+              flowDot.style.left = pixel.x + 'px';
+              flowDot.style.top = pixel.y + 'px';
+              flowDot.style.display = 'block';
+            }
+            
+            // 显示箭头
+            const flowArrow = flowArrows[index * 3 + i];
+            if (flowArrow) {
+              // 计算角度
+              const nextSegment = Math.min(segment + 1, pointCount - 1);
+              const pNext = path[nextSegment];
+              const angle = Math.atan2(pNext.lat - p1.lat, pNext.lng - p1.lng) * (180 / Math.PI);
+              
+              flowArrow.style.left = pixel.x + 'px';
+              flowArrow.style.top = pixel.y + 'px';
+              flowArrow.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+              flowArrow.style.display = 'block';
+            }
+          }
+        });
+      }
+
+      // 开始动画
+      function startAnimation() {
+        if (animationInterval) {
+          clearInterval(animationInterval);
+        }
+        animationInterval = setInterval(animateLines, 40);
+        animationPaused = false;
+        
+        // 显示所有流动元素
+        flowDots.forEach(dot => dot.style.display = 'block');
+        flowArrows.forEach(arrow => arrow.style.display = 'block');
+      }
+      
+      // 停止动画
+      function stopAnimation() {
+        if (animationInterval) {
+          clearInterval(animationInterval);
+          animationInterval = null;
+        }
+        animationPaused = true;
+      }
+      
+      // 重置动画
+      function resetAnimation() {
+        stopAnimation();
+        // 隐藏所有流动元素
+        flowDots.forEach(dot => dot.style.display = 'none');
+        flowArrows.forEach(arrow => arrow.style.display = 'none');
+      }
+
+      // 控制按钮事件
+      document.getElementById('playBtn').addEventListener('click', function() {
+        if (animationPaused) {
+          startAnimation();
+          this.innerHTML = '<i class="fas fa-pause"></i>暂停';
+        } else {
+          stopAnimation();
+          this.innerHTML = '<i class="fas fa-play"></i>播放';
+        }
+      });
+      
+      document.getElementById('resetBtn').addEventListener('click', function() {
+        resetAnimation();
+        document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>播放';
+      });
+      
+      // 页面缩放时更新元素位置
+      map.addEventListener('zoomend', function() {
+        animateLines();
+      });
+      
+      map.addEventListener('moveend', function() {
+        animateLines();
+      });
+      
+      // 初始启动动画
+      setTimeout(() => {
+        startAnimation();
+        document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>暂停';
+      }, 500);
     };
   </script>
 </body>
