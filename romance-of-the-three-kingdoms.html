@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>三国演义路线图</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <script src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=QP8jicLhkpvN65WvTP6C8QKZwA1HLamO"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    .custom-label {
+      background: rgba(255,255,255,0.9);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #333;
+      box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    window.onload = function () {
+      const map = new BMapGL.Map("map");
+      map.centerAndZoom(new BMapGL.Point(112.5, 34.6), 6);
+      map.enableScrollWheelZoom(true);
+
+      const points = [
+        {
+          name: "桃园三结义",
+          lng: 112.5,
+          lat: 34.6,
+          detail: "刘备、关羽、张飞于桃园结义，发誓同生共死。",
+          time: "公元184年",
+          ancientName: "涿郡"
+        },
+        {
+          name: "虎牢关之战",
+          lng: 113.4,
+          lat: 34.5,
+          detail: "关羽温酒斩华雄，张飞大战吕布，三英战吕布名扬天下。",
+          time: "公元190年",
+          ancientName: "虎牢关"
+        },
+        {
+          name: "汜水关战役",
+          lng: 113.0,
+          lat: 34.5,
+          detail: "孙坚先攻汜水关，刘关张支援，击败董卓部队。",
+          time: "公元190年",
+          ancientName: "汜水关"
+        }
+      ];
+
+      const pointObjs = [];
+
+      points.forEach(p => {
+        const point = new BMapGL.Point(p.lng, p.lat);
+        pointObjs.push(point);
+
+        // Marker
+        const marker = new BMapGL.Marker(point);
+        map.addOverlay(marker);
+
+        // 精简 Label
+        const brief = `<div class="custom-label">
+          <strong>${p.ancientName}</strong><br/>
+          ${p.name}<br/>
+          ${p.time}
+        </div>`;
+        const label = new BMapGL.Label(brief, {
+          position: point,
+          offset: new BMapGL.Size(20, -30)
+        });
+        label.setStyle({ border: "none", background: "transparent" });
+        map.addOverlay(label);
+
+        // 点击打开详细信息窗
+        const infoContent = `
+          <div style="font-size:14px;">
+            <strong>${p.name}</strong><br/>
+            古地名：${p.ancientName}<br/>
+            时间：${p.time}<br/>
+            <br/>
+            ${p.detail}
+          </div>
+        `;
+        const infoWindow = new BMapGL.InfoWindow(infoContent, {
+          width: 280,
+          height: 120,
+          title: p.name
+        });
+        marker.addEventListener("click", () => {
+          map.openInfoWindow(infoWindow, point);
+        });
+      });
+
+      // 绘制每一段线，带箭头
+      for (let i = 0; i < pointObjs.length - 1; i++) {
+        const start = pointObjs[i];
+        const end = pointObjs[i + 1];
+        const line = new BMapGL.Polyline([start, end], {
+          strokeColor: "#1E90FF",
+          strokeWeight: 4,
+          strokeOpacity: 0.9,
+          icons: [{
+            icon: new BMapGL.Symbol('arrow', {
+            scale: 1.5,
+            strokeColor: "#0000FF",
+            strokeWeight: 2
+          }),
+            offset: '50%' // 箭头显示在中间
+          }]
+        });
+        map.addOverlay(line);
+      }
+    };
+  </script>
+</body>
+</html>
