@@ -15,16 +15,17 @@
     html, body {
       height: 100%;
       width: 100%;
-      font-family: 'Microsoft YaHei', sans-serif;
+      font-family: 'Microsoft YaHei', '宋体', sans-serif;
       overflow: hidden;
       color: #333;
-      background: linear-gradient(135deg, #f9f1e8 0%, #e8eaf6 100%);
+      background: linear-gradient(135deg, #f5f0ff 0%, #f8f5ff 100%);
     }
     
     #map-container {
       position: relative;
       width: 100%;
       height: 100%;
+      background: #f8f7ff;
     }
     
     #map {
@@ -32,20 +33,28 @@
       width: 100%;
     }
     
+    /* 毛玻璃效果 */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+    
     #title-bar {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
+      top: 8px;
+      left: 8px;
+      right: 8px;
       z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.92);
       border-radius: 12px;
-      padding: 15px 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(209, 196, 180, 0.4);
+      padding: 8px 16px;
+      max-width: 98%;
+      margin: 0 auto;
     }
     
     .title-group {
@@ -54,143 +63,180 @@
     }
     
     #title {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: bold;
-      color: #8b0000;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
+      color: #6a4ba8;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.03);
     }
     
     #title i {
-      margin-right: 10px;
-      color: #b71c1c;
+      margin-right: 8px;
+      color: #7e57c2;
     }
     
     #subtitle {
-      font-size: 0.9rem;
-      color: #5d4037;
-      opacity: 0.8;
+      font-size: 0.75rem;
+      color: #8e75b5;
+      opacity: 0.9;
     }
     
     #controls {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
     
     .control-btn {
-      background: #8b0000;
+      background: linear-gradient(to right, #7e57c2, #6a4ba8);
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 8px 15px;
+      border-radius: 6px;
+      padding: 6px 12px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 5px rgba(120, 90, 180, 0.25);
     }
     
     .control-btn:hover {
-      background: #6b0000;
+      background: linear-gradient(to right, #6a4ba8, #5c3f92);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 8px rgba(120, 90, 180, 0.3);
     }
     
     .control-btn i {
-      margin-right: 6px;
+      margin-right: 4px;
+      font-size: 0.8rem;
+    }
+    
+    /* 时间轴容器 - 支持滚动 */
+    #timeline-container {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      z-index: 10;
+      border-radius: 12px;
+      overflow-x: auto;
+      padding: 4px;
+      scrollbar-width: thin;
+      max-width: 98%;
+      margin: 0 auto;
     }
     
     #timeline {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 50px;
-      padding: 12px 30px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      z-index: 10;
-      display: flex;
-      gap: 20px;
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 8px 20px;
+      min-width: 100%;
+      gap: 15px;
+      border: 1px solid rgba(180, 160, 220, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 80, 120, 0.08);
+    }
+    
+    /* 时间轴滚动条样式 */
+    #timeline-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    #timeline-container::-webkit-scrollbar-track {
+      background: rgba(200, 190, 230, 0.15);
+      border-radius: 2px;
+    }
+    
+    #timeline-container::-webkit-scrollbar-thumb {
+      background: rgba(110, 90, 170, 0.35);
+      border-radius: 2px;
+    }
+    
+    #timeline-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(90, 70, 150, 0.6);
     }
     
     .time-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 70px;
+      min-width: 60px;
       cursor: pointer;
-      padding: 5px 10px;
-      border-radius: 8px;
-      transition: background 0.3s;
+      padding: 4px 12px;
+      border-radius: 6px;
+      transition: all 0.3s;
     }
     
     .time-item:hover {
-      background: rgba(139, 0, 0, 0.1);
+      background: rgba(126, 87, 194, 0.08);
     }
     
     .time-year {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: bold;
-      color: #8b0000;
+      color: #7e57c2;
     }
     
     .time-name {
-      font-size: 0.85rem;
-      color: #5d4037;
+      font-size: 0.7rem;
+      color: #8e75b5;
       text-align: center;
-      margin-top: 4px;
+      margin-top: 2px;
+      white-space: nowrap;
     }
     
     .active-time {
-      background: rgba(139, 0, 0, 0.15);
+      background: rgba(126, 87, 194, 0.15);
       position: relative;
     }
     
     .active-time::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background: #8b0000;
+      width: 8px;
+      height: 8px;
+      background: #7e57c2;
       border-radius: 50%;
     }
     
     .custom-label {
-      background: linear-gradient(to right, #8b0000, #a52a2a);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 14px;
+      background: linear-gradient(to right, #7e57c2, #6a4ba8);
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 10px;
       color: white;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      max-width: 180px;
-      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      max-width: 120px;
+      line-height: 1.25;
+      z-index: 100;
     }
     
     .custom-label strong {
-      font-size: 15px;
+      font-size: 10px;
       display: block;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
     
     .fly-line {
-      stroke: #8b0000;
-      stroke-width: 3;
-      stroke-dasharray: 10, 5;
+      stroke: #7e57c2;
+      stroke-width: 2;
+      stroke-dasharray: 8, 4;
       fill: none;
-      animation: fly 6s linear infinite;
+      animation: fly 8s linear infinite;
     }
     
     @keyframes fly {
       from {
-        stroke-dashoffset: 100;
+        stroke-dashoffset: 80;
       }
       to {
         stroke-dashoffset: 0;
@@ -198,20 +244,17 @@
     }
     
     .arrowhead {
-      fill: #8b0000;
+      fill: #7e57c2;
     }
     
     #info-panel {
       position: absolute;
-      right: 20px;
+      right: 15px;
       top: 90px;
-      width: 280px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+      width: 240px;
+      border-radius: 10px;
+      padding: 16px;
       z-index: 10;
-      border: 1px solid rgba(209, 196, 180, 0.4);
       transform: translateY(20px);
       opacity: 0;
       transition: all 0.4s ease;
@@ -226,39 +269,41 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #8b0000;
-      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #7e57c2;
+      padding-bottom: 10px;
     }
     
     .info-title {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      color: #8b0000;
+      color: #6a4ba8;
     }
     
     .info-close {
-      background: #e9ecef;
+      background: #eae4fc;
       border: none;
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #5d4037;
+      color: #7e57c2;
       transition: all 0.3s;
     }
     
     .info-close:hover {
-      background: #dc3545;
+      background: #7e57c2;
       color: white;
     }
     
     .info-content {
-      line-height: 1.6;
+      line-height: 1.5;
+      color: #444;
+      font-size: 0.85rem;
     }
     
     .info-row {
@@ -267,36 +312,36 @@
     }
     
     .info-label {
-      width: 80px;
+      width: 60px;
       font-weight: bold;
-      color: #5d4037;
+      color: #6a4ba8;
+      font-size: 0.85rem;
     }
     
     .info-value {
       flex: 1;
-      color: #444;
+      font-size: 0.85rem;
     }
     
     #legend {
       position: absolute;
-      bottom: 100px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      bottom: 170px;
+      right: 15px;
+      border-radius: 8px;
+      padding: 12px;
       z-index: 10;
-      font-size: 14px;
-      border: 1px solid rgba(209, 196, 180, 0.4);
+      font-size: 11px;
+      max-width: 130px;
     }
     
     .legend-title {
       font-weight: bold;
-      color: #8b0000;
-      margin-bottom: 8px;
+      color: #6a4ba8;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      font-size: 12px;
     }
     
     .legend-item {
@@ -306,19 +351,19 @@
     }
     
     .legend-icon {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     
     .event-marker {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      background: #8b0000;
+      background: #7e57c2;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -326,16 +371,16 @@
     
     .event-marker::after {
       content: '';
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: #ffd54f;
+      background: #d6c7f0;
     }
     
     .fly-line-legend {
-      width: 30px;
-      height: 4px;
-      background: linear-gradient(90deg, #8b0000 0%, #ff6b6b 100%);
+      width: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, #7e57c2 0%, #6a4ba8 100%);
       position: relative;
       overflow: hidden;
     }
@@ -344,26 +389,73 @@
       content: '';
       position: absolute;
       top: 0;
-      left: -30px;
-      width: 30px;
+      left: -24px;
+      width: 24px;
       height: 100%;
-      background: white;
+      background: rgba(255, 255, 255, 0.8);
       animation: flyLegend 2s linear infinite;
     }
     
     @keyframes flyLegend {
       0% {
-        left: -30px;
+        left: -24px;
       }
       100% {
         left: 100%;
       }
     }
     
+    /* 自定义标记点样式 */
+    .custom-marker {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #7e57c2;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 0 rgba(126, 87, 194, 0.4);
+    }
+    
+    .custom-marker::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d6c7f0;
+      transition: all 0.3s;
+    }
+    
+    .custom-marker:hover {
+      transform: translate(-50%, -50%) scale(1.8);
+      box-shadow: 0 0 10px rgba(126, 87, 194, 0.7);
+    }
+    
+    .custom-marker:hover::after {
+      background: #f1ecfd;
+    }
+    
+    /* 事件标签容器 - 放置在点的右上角 */
+    .custom-label-container {
+      position: absolute;
+      z-index: 19;
+      transform: translate(8px, -100%);
+      text-align: left;
+      pointer-events: auto;
+    }
+    
     @media (max-width: 768px) {
       #title-bar {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
+        padding: 8px;
+        top: 5px;
       }
       
       #controls {
@@ -371,24 +463,36 @@
         justify-content: center;
       }
       
+      #timeline-container {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        max-width: 96%;
+      }
+      
       #timeline {
-        flex-wrap: wrap;
-        width: 90%;
-        border-radius: 20px;
-        padding: 10px;
+        padding: 6px;
+        gap: 8px;
+        border-radius: 30px;
       }
       
       .time-item {
-        min-width: 50px;
+        min-width: 55px;
+        padding: 3px 8px;
       }
       
       #info-panel {
-        width: calc(100% - 40px);
+        width: calc(100% - 30px);
         top: auto;
-        bottom: 80px;
-        left: 20px;
-        max-height: 200px;
+        bottom: 110px;
+        left: 15px;
+        max-height: 170px;
         overflow-y: auto;
+      }
+      
+      #legend {
+        bottom: 160px;
+        right: 15px;
       }
     }
   </style>
@@ -397,33 +501,25 @@
   <div id="map-container">
     <div id="map"></div>
     
-    <div id="title-bar">
+    <div id="title-bar" class="glass-effect">
       <div class="title-group">
-        <h1 id="title"><i class="fas fa-map-marked-alt"></i> 三国演义重要战役路线图</h1>
-        <p id="subtitle">探索三国时期重要战役的地理位置和历史事件</p>
+        <h1 id="title"><i class="fas fa-route"></i> 三国演义战役路线图</h1>
+        <p id="subtitle">探索三国时期重要战役的地理位置和历史脉络</p>
       </div>
       <div id="controls">
         <button class="control-btn" id="toggleFly"><i class="fas fa-bolt"></i> 飞线效果</button>
-        <button class="control-btn" id="toggleInfo"><i class="fas fa-book-open"></i> 事件详情</button>
+        <button class="control-btn" id="toggleInfo"><i class="fas fa-history"></i> 历史详情</button>
       </div>
     </div>
     
-    <div id="timeline">
-      <div class="time-item active-time" data-year="184">
-        <span class="time-year">184年</span>
-        <span class="time-name">桃园三结义</span>
-      </div>
-      <div class="time-item" data-year="190">
-        <span class="time-year">190年</span>
-        <span class="time-name">虎牢关之战</span>
-      </div>
-      <div class="time-item" data-year="190">
-        <span class="time-year">190年</span>
-        <span class="time-name">汜水关战役</span>
+    <!-- 时间轴容器（支持滚动） -->
+    <div id="timeline-container">
+      <div id="timeline">
+        <!-- 时间轴将由JavaScript动态生成 -->
       </div>
     </div>
     
-    <div id="info-panel">
+    <div id="info-panel" class="glass-effect">
       <div class="info-header">
         <div class="info-title" id="infoTitle">桃园三结义</div>
         <button class="info-close"><i class="fas fa-times"></i></button>
@@ -443,8 +539,8 @@
       </div>
     </div>
     
-    <div id="legend">
-      <div class="legend-title"><i class="fas fa-key"></i> 图例说明</div>
+    <div id="legend" class="glass-effect">
+      <div class="legend-title"><i class="fas fa-map-signs"></i> 图例说明</div>
       <div class="legend-item">
         <div class="legend-icon">
           <div class="event-marker"></div>
@@ -461,7 +557,6 @@
   </div>
 
   <script>
-    // 确保百度地图API加载完成后再执行初始化
     function initMap() {
       // 创建地图实例
       const map = new BMapGL.Map("map");
@@ -500,79 +595,191 @@
           time: "公元190年",
           ancientName: "汜水关",
           description: "孙坚率先攻打汜水关，遭遇华雄阻击。在粮草不足的困境下，曹操支持袁绍发檄文集结诸侯。刘备率关羽、张飞加入战斗，配合孙坚部队击败董卓守军。虽未完全攻下汜水关，但展示了联盟的力量，为后续讨伐董卓奠定基础。"
+        },
+        {
+          name: "官渡之战",
+          lng: 113.6,
+          lat: 35.3,
+          detail: "曹操以少胜多大败袁绍，奠定了统一北方的基础。",
+          time: "公元200年",
+          ancientName: "官渡",
+          description: "袁绍率十万大军南下，曹操仅有两万军队驻守官渡。曹操采纳谋士许攸之计，夜袭乌巢烧毁袁军粮草，导致袁绍大军溃败。此战使曹操成为北方最强大的军事集团。"
+        },
+        {
+          name: "赤壁之战",
+          lng: 113.9,
+          lat: 29.5,
+          detail: "孙刘联军火攻大败曹操水军，形成三国鼎立局面。",
+          time: "公元208年",
+          ancientName: "赤壁",
+          description: "曹操亲率二十万大军南下，意图统一江南。孙权、刘备联合抗曹，周瑜采纳黄盖火攻之计，以五万兵力击败曹操大军，烧毁曹军战船数百艘，使曹操北归，奠定了三国鼎立的基础。"
+        },
+        {
+          name: "合肥之战",
+          lng: 117.3,
+          lat: 31.8,
+          detail: "张辽八百壮士破吴军十万，奠定其五子良将之首地位。",
+          time: "公元215年",
+          ancientName: "合肥",
+          description: "孙权率十万大军攻打合肥，张辽率领八百精锐趁吴军立足未稳，夜间突袭吴营，在逍遥津大破吴军，杀得江南人人胆寒。此战确立了张辽在曹魏军事集团中的地位，也创下三国以少胜多的经典战例。"
+        },
+        {
+          name: "汉中之战",
+          lng: 107.0,
+          lat: 33.1,
+          detail: "刘备打败曹操，夺取汉中，奠定蜀汉基业。",
+          time: "公元219年",
+          ancientName: "定军山",
+          description: "刘备在定军山与夏侯渊对峙，黄忠乘高鼓噪攻下夏侯渊的军营，阵斩夏侯渊。随后曹操亲征汉中，刘备坚守不出，曹操因粮草不济无奈撤军。此战使得刘备夺取汉中，并在同年称汉中王，蜀汉达到鼎盛时期。"
+        },
+        {
+          name: "荆州之争",
+          lng: 112.2,
+          lat: 30.3,
+          detail: "关羽大意失荆州，败走麦城，蜀吴联盟破裂。",
+          time: "公元219年",
+          ancientName: "荆州",
+          description: "关羽率军北伐襄樊，水淹七军威震华夏。但吕蒙白衣渡江偷袭荆州，关羽后方失守，最终在麦城被擒杀。此战导致蜀汉失去荆州要地，同时标志着蜀吴联盟的破裂，三国格局发生变化。"
+        },
+        {
+          name: "夷陵之战",
+          lng: 111.4,
+          lat: 30.7,
+          detail: "刘备为报关羽之仇伐吴，被陆逊火烧连营。",
+          time: "公元222年",
+          ancientName: "猇亭",
+          description: "刘备亲率七十万大军伐吴，陆逊以逸待劳坚守不出。至夏季酷暑，蜀军避暑林中，陆逊趁势火烧连营四十余寨，大败蜀军。刘备退守白帝城，此战使蜀汉元气大伤，三国势力基本定型。"
+        },
+        {
+          name: "五丈原之战",
+          lng: 107.6,
+          lat: 34.3,
+          detail: "诸葛亮第六次北伐，最终命陨五丈原。",
+          time: "公元234年",
+          ancientName: "五丈原",
+          description: "诸葛亮屯兵五丈原与司马懿对峙，司马懿坚壁不战。诸葛亮送妇人衣物激将未果，最终积劳成疾病逝军中。此战标志着蜀汉北伐战略的终结，姜维虽继承遗志但未能扭转局势。"
         }
       ];
 
+      // 创建时间轴（根据points数据动态生成）
+      const timeline = document.getElementById('timeline');
+      timeline.innerHTML = '';
+      points.forEach((point, index) => {
+        const timeItem = document.createElement('div');
+        timeItem.className = 'time-item';
+        if (index === 0) timeItem.classList.add('active-time');
+        timeItem.setAttribute('data-index', index);
+        
+        timeItem.innerHTML = `
+          <span class="time-year">${point.time.replace('公元', '')}</span>
+          <span class="time-name">${point.name}</span>
+        `;
+        
+        timeline.appendChild(timeItem);
+      });
+
       // 保存标记点对象
       const pointObjs = [];
-      const markers = [];
-      const labelObjs = [];
+      const markerContainers = [];
 
       // 创建事件标记和信息弹窗
       points.forEach((p, index) => {
         const point = new BMapGL.Point(p.lng, p.lat);
         pointObjs.push(point);
 
-        // 创建自定义标记
-        const marker = new BMapGL.Marker(point);
-        markers.push(marker);
-        map.addOverlay(marker);
+        // 创建自定义标记容器
+        const markerContainer = document.createElement('div');
+        markerContainer.className = 'custom-marker';
+        markerContainer.setAttribute('data-index', index);
+        document.getElementById('map-container').appendChild(markerContainer);
+        markerContainers.push(markerContainer);
 
-        // 精简标签
-        const brief = `<div class="custom-label">
-          <strong>${p.ancientName}</strong><br/>
-          ${p.name}<br/>
-          ${p.time}
-        </div>`;
+        // 使用自定义覆盖物来处理定位
+        const updateMarkerPosition = () => {
+          const position = map.pointToOverlayPixel(point);
+          markerContainer.style.left = position.x + 'px';
+          markerContainer.style.top = position.y + 'px';
+        };
         
-        const label = new BMapGL.Label(brief, {
-          position: point,
-          offset: new BMapGL.Size(20, -40)
+        // 添加标签容器
+        const labelContainer = document.createElement('div');
+        labelContainer.className = 'custom-label-container';
+        labelContainer.setAttribute('data-index', index);
+        document.getElementById('map-container').appendChild(labelContainer);
+        
+        // 精简标签
+        const labelContent = `<div class="custom-label">
+          <strong>${p.ancientName}</strong>
+          <div>${p.name}</div>
+          <div>${p.time}</div>
+        </div>`;
+        labelContainer.innerHTML = labelContent;
+        
+        const updateLabelPosition = () => {
+          const position = map.pointToOverlayPixel(point);
+          labelContainer.style.left = (position.x + 6) + 'px';
+          labelContainer.style.top = (position.y - 12) + 'px';
+        };
+        
+        // 初始定位
+        updateMarkerPosition();
+        updateLabelPosition();
+        
+        // 地图移动时更新位置
+        map.addEventListener('moving', updateMarkerPosition);
+        map.addEventListener('moving', updateLabelPosition);
+        map.addEventListener('zoomend', updateMarkerPosition);
+        map.addEventListener('zoomend', updateLabelPosition);
+        
+        // 点击打开详细信息
+        markerContainer.addEventListener("click", () => {
+          showInfoPanel(p);
         });
         
-        label.setStyle({ border: "none", background: "transparent" });
-        map.addOverlay(label);
-        labelObjs.push(label);
-
-        // 点击打开详细信息
-        marker.addEventListener("click", () => {
-          document.getElementById('infoTitle').textContent = p.name;
-          document.getElementById('infoAncient').textContent = p.ancientName;
-          document.getElementById('infoTime').textContent = p.time;
-          document.getElementById('infoDetail').textContent = p.detail;
-          document.getElementById('infoContent').innerHTML = `
-            <div class="info-row">
-              <div class="info-label">古地名：</div>
-              <div class="info-value">${p.ancientName}</div>
-            </div>
-            <div class="info-row">
-              <div class="info-label">时间：</div>
-              <div class="info-value">${p.time}</div>
-            </div>
-            <div class="info-row">
-              <div class="info-value">${p.description}</div>
-            </div>
-          `;
-          document.getElementById('info-panel').classList.add('show');
-          
-          // 高亮时间线上的对应事件
-          document.querySelectorAll('.time-item').forEach((item, idx) => {
-            if (idx === index) {
-              item.classList.add('active-time');
-            } else {
-              item.classList.remove('active-time');
-            }
-          });
+        // 标签容器也绑定点击事件
+        labelContainer.addEventListener("click", () => {
+          showInfoPanel(p);
         });
       });
+      
+      // 显示信息面板函数
+      function showInfoPanel(p) {
+        document.getElementById('infoTitle').textContent = p.name;
+        document.getElementById('infoAncient').textContent = p.ancientName;
+        document.getElementById('infoTime').textContent = p.time;
+        document.getElementById('infoDetail').textContent = p.detail;
+        document.getElementById('infoContent').innerHTML = `
+          <div class="info-row">
+            <div class="info-label">古地名：</div>
+            <div class="info-value">${p.ancientName}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">时间：</div>
+            <div class="info-value">${p.time}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-value">${p.description}</div>
+          </div>
+        `;
+        document.getElementById('info-panel').classList.add('show');
+        
+        // 高亮时间线上的对应事件
+        document.querySelectorAll('.time-item').forEach((item, idx) => {
+          if (idx === points.findIndex(point => point.name === p.name)) {
+            item.classList.add('active-time');
+          } else {
+            item.classList.remove('active-time');
+          }
+        });
+      }
 
       // 为所有点之间创建路径
       for (let i = 0; i < pointObjs.length - 1; i++) {
-        createPath(map, pointObjs[i], pointObjs[i+1]);
+        createPath(map, pointObjs[i], pointObjs[i+1], i);
       }
 
-      // 创建带动态效果的路径函数
-      function createPath(map, start, end) {
+      // 创建带动态效果的路径函数（带箭头）
+      function createPath(map, start, end, index) {
         // 创建动态飞线SVG
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
@@ -586,31 +793,31 @@
         
         const path = document.createElementNS(svgNS, "path");
         path.setAttribute("class", "fly-line");
-        path.setAttribute("stroke", "#8b0000");
-        path.setAttribute("stroke-width", "3");
-        path.setAttribute("stroke-dasharray", "10, 5");
+        path.setAttribute("stroke", "#7e57c2");
+        path.setAttribute("stroke-width", "2");
+        path.setAttribute("stroke-dasharray", "8, 4");
         path.setAttribute("fill", "none");
         
         // 添加箭头标记
         const defs = document.createElementNS(svgNS, "defs");
+        const markerId = `arrowhead-${index}`;
         const marker = document.createElementNS(svgNS, "marker");
-        marker.setAttribute("id", `arrowhead-${start.lng}-${start.lat}`);
-        marker.setAttribute("markerWidth", "10");
-        marker.setAttribute("markerHeight", "7");
-        marker.setAttribute("refX", "0");
-        marker.setAttribute("refY", "3.5");
+        marker.setAttribute("id", markerId);
+        marker.setAttribute("markerWidth", "8");
+        marker.setAttribute("markerHeight", "6");
+        marker.setAttribute("refX", "7");
+        marker.setAttribute("refY", "3");
         marker.setAttribute("orient", "auto");
-        marker.setAttribute("class", "arrowhead");
         
         const arrow = document.createElementNS(svgNS, "polygon");
-        arrow.setAttribute("points", "0 0, 10 3.5, 0 7");
-        arrow.setAttribute("fill", "#8b0000");
+        arrow.setAttribute("points", "0 0, 8 3, 0 6");
+        arrow.setAttribute("fill", "#7e57c2");
         
         marker.appendChild(arrow);
         defs.appendChild(marker);
         svg.appendChild(defs);
         svg.appendChild(path);
-        path.setAttribute("marker-end", `url(#arrowhead-${start.lng}-${start.lat})`);
+        path.setAttribute("marker-end", `url(#${markerId})`);
         
         // 在地图容器中添加SVG
         document.getElementById('map-container').appendChild(svg);
@@ -642,7 +849,7 @@
         
         // 动态控制动画
         if (flyAnimationEnabled) {
-          pathElement.style.animation = "fly 6s linear infinite";
+          pathElement.style.animation = "fly 8s linear infinite";
         } else {
           pathElement.style.animation = "none";
         }
@@ -657,7 +864,7 @@
         
         flyLines.forEach(flyLine => {
           if (flyAnimationEnabled) {
-            flyLine.path.style.animation = "fly 6s linear infinite";
+            flyLine.path.style.animation = "fly 8s linear infinite";
           } else {
             flyLine.path.style.animation = "none";
           }
@@ -668,16 +875,16 @@
         const panel = document.getElementById('info-panel');
         if (panel.classList.contains('show')) {
           panel.classList.remove('show');
-          this.innerHTML = '<i class="fas fa-book-open"></i> 显示详情';
+          this.innerHTML = '<i class="fas fa-history"></i> 历史详情';
         } else {
           panel.classList.add('show');
-          this.innerHTML = '<i class="fas fa-book-open"></i> 隐藏详情';
+          this.innerHTML = '<i class="fas fa-history"></i> 隐藏详情';
         }
       });
       
       document.querySelector('.info-close').addEventListener('click', function() {
         document.getElementById('info-panel').classList.remove('show');
-        document.getElementById('toggleInfo').innerHTML = '<i class="fas fa-book-open"></i> 显示详情';
+        document.getElementById('toggleInfo').innerHTML = '<i class="fas fa-history"></i> 历史详情';
       });
       
       // 添加时间线点击事件
@@ -690,21 +897,22 @@
           item.classList.add('active-time');
           
           // 移动到对应的标记点并打开信息
-          const marker = markers[index];
-          map.panTo(marker.getPosition(), {noAnimation: false});
+          const point = pointObjs[index];
+          map.panTo(point, {noAnimation: false});
           setTimeout(() => {
-            marker.dispatchEvent(new Event('click'));
+            showInfoPanel(points[index]);
           }, 1000);
         });
       });
       
       // 初始显示第一个事件详情
-      markers[0].dispatchEvent(new Event('click'));
+      if (points.length > 0) {
+        showInfoPanel(points[0]);
+      }
     }
 
     // 百度地图API加载回调
     function loadBMap() {
-      // 创建script标签加载百度地图API
       const script = document.createElement('script');
       script.src = 'https://api.map.baidu.com/api?v=1.0&type=webgl&ak=QP8jicLhkpvN65WvTP6C8QKZwA1HLamO&callback=initMap';
       document.body.appendChild(script);
