@@ -11,6 +11,8 @@ entries:
         url: running.html
       - title: poi😋
         url: poi.html
+      - title: 三国演义poi
+        url: romance-of-the-three-kingdoms.html
       - title: reading📖
         url: reading.html
   - title: daily
