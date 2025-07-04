@@ -18,14 +18,14 @@
       font-family: 'Microsoft YaHei', '宋体', sans-serif;
       overflow: hidden;
       color: #333;
-      background: linear-gradient(135deg, #f5f0ff 0%, #f8f5ff 100%);
+      background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
     }
     
     #map-container {
       position: relative;
       width: 100%;
       height: 100%;
-      background: #f8f7ff;
+      background: #f0f9ff;
     }
     
     #map {
@@ -33,13 +33,13 @@
       width: 100%;
     }
     
-    /* 毛玻璃效果 */
+    /* 毛玻璃效果 - 更新为清新风格 */
     .glass-effect {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(240, 248, 255, 0.6);
+      box-shadow: 0 4px 15px rgba(0, 80, 120, 0.05);
     }
     
     #title-bar {
@@ -65,7 +65,7 @@
     #title {
       font-size: 1.25rem;
       font-weight: bold;
-      color: #6a4ba8;
+      color: #3a7bc8;
       letter-spacing: 0.5px;
       margin-bottom: 2px;
       display: flex;
@@ -75,12 +75,12 @@
     
     #title i {
       margin-right: 8px;
-      color: #7e57c2;
+      color: #4e92de;
     }
     
     #subtitle {
       font-size: 0.75rem;
-      color: #8e75b5;
+      color: #5c94d1;
       opacity: 0.9;
     }
     
@@ -90,7 +90,7 @@
     }
     
     .control-btn {
-      background: linear-gradient(to right, #7e57c2, #6a4ba8);
+      background: linear-gradient(to right, #4e92de, #3a7bc8);
       color: white;
       border: none;
       border-radius: 6px;
@@ -100,13 +100,13 @@
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(120, 90, 180, 0.25);
+      box-shadow: 0 2px 5px rgba(58, 123, 200, 0.25);
     }
     
     .control-btn:hover {
-      background: linear-gradient(to right, #6a4ba8, #5c3f92);
+      background: linear-gradient(to right, #3a7bc8, #2a6ab8);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(120, 90, 180, 0.3);
+      box-shadow: 0 4px 8px rgba(58, 123, 200, 0.3);
     }
     
     .control-btn i {
@@ -114,14 +114,14 @@
       font-size: 0.8rem;
     }
     
-    /* 时间轴容器 - 支持滚动 */
+    /* 时间轴容器 - 支持滚动（方形直角） */
     #timeline-container {
       position: absolute;
       bottom: 15px;
       left: 15px;
       right: 15px;
       z-index: 10;
-      border-radius: 12px;
+      border-radius: 0; 
       overflow-x: auto;
       padding: 4px;
       scrollbar-width: thin;
@@ -131,14 +131,14 @@
     
     #timeline {
       display: inline-flex;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border-radius: 40px;
+      border-radius: 0; 
       padding: 8px 20px;
       min-width: 100%;
       gap: 15px;
-      border: 1px solid rgba(180, 160, 220, 0.4);
+      border: 1px solid rgba(180, 210, 235, 0.4);
       box-shadow: 0 4px 12px rgba(0, 80, 120, 0.08);
     }
     
@@ -148,17 +148,17 @@
     }
     
     #timeline-container::-webkit-scrollbar-track {
-      background: rgba(200, 190, 230, 0.15);
+      background: rgba(200, 220, 240, 0.15);
       border-radius: 2px;
     }
     
     #timeline-container::-webkit-scrollbar-thumb {
-      background: rgba(110, 90, 170, 0.35);
+      background: rgba(58, 123, 200, 0.35);
       border-radius: 2px;
     }
     
     #timeline-container::-webkit-scrollbar-thumb:hover {
-      background: rgba(90, 70, 150, 0.6);
+      background: rgba(42, 106, 184, 0.6);
     }
     
     .time-item {
@@ -173,25 +173,25 @@
     }
     
     .time-item:hover {
-      background: rgba(126, 87, 194, 0.08);
+      background: rgba(78, 146, 222, 0.08);
     }
     
     .time-year {
       font-size: 0.95rem;
       font-weight: bold;
-      color: #7e57c2;
+      color: #4e92de;
     }
     
     .time-name {
       font-size: 0.7rem;
-      color: #8e75b5;
+      color: #5c94d1;
       text-align: center;
       margin-top: 2px;
       white-space: nowrap;
     }
     
     .active-time {
-      background: rgba(126, 87, 194, 0.15);
+      background: rgba(78, 146, 222, 0.15);
       position: relative;
     }
     
@@ -203,12 +203,12 @@
       transform: translateX(-50%);
       width: 8px;
       height: 8px;
-      background: #7e57c2;
+      background: #4e92de;
       border-radius: 50%;
     }
     
     .custom-label {
-      background: linear-gradient(to right, #7e57c2, #6a4ba8);
+      background: linear-gradient(to right, #4e92de, #3a7bc8);
       padding: 4px 8px;
       border-radius: 5px;
       font-size: 10px;
@@ -226,8 +226,9 @@
       margin-bottom: 1px;
     }
     
+    /* 更新飞线效果为青蓝色 */
     .fly-line {
-      stroke: #7e57c2;
+      stroke: #4e92de;
       stroke-width: 2;
       stroke-dasharray: 8, 4;
       fill: none;
@@ -243,8 +244,9 @@
       }
     }
     
+    /* 更新箭头颜色 */
     .arrowhead {
-      fill: #7e57c2;
+      fill: #4e92de;
     }
     
     #info-panel {
@@ -270,18 +272,18 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
-      border-bottom: 1px solid #7e57c2;
+      border-bottom: 1px solid #4e92de;
       padding-bottom: 10px;
     }
     
     .info-title {
       font-size: 1.1rem;
       font-weight: bold;
-      color: #6a4ba8;
+      color: #3a7bc8;
     }
     
     .info-close {
-      background: #eae4fc;
+      background: #e1f0fa;
       border: none;
       width: 26px;
       height: 26px;
@@ -291,12 +293,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #7e57c2;
+      color: #4e92de;
       transition: all 0.3s;
     }
     
     .info-close:hover {
-      background: #7e57c2;
+      background: #4e92de;
       color: white;
     }
     
@@ -314,7 +316,7 @@
     .info-label {
       width: 60px;
       font-weight: bold;
-      color: #6a4ba8;
+      color: #3a7bc8;
       font-size: 0.85rem;
     }
     
@@ -336,7 +338,7 @@
     
     .legend-title {
       font-weight: bold;
-      color: #6a4ba8;
+      color: #3a7bc8;
       margin-bottom: 6px;
       display: flex;
       align-items: center;
@@ -363,7 +365,7 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: #7e57c2;
+      background: #4e92de;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -374,13 +376,13 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #d6c7f0;
+      background: #d1e6f7;
     }
     
     .fly-line-legend {
       width: 24px;
       height: 3px;
-      background: linear-gradient(90deg, #7e57c2 0%, #6a4ba8 100%);
+      background: linear-gradient(90deg, #4e92de 0%, #3a7bc8 100%);
       position: relative;
       overflow: hidden;
     }
@@ -405,13 +407,13 @@
       }
     }
     
-    /* 自定义标记点样式 */
+    /* 自定义标记点样式 - 更新为清新风格 */
     .custom-marker {
       position: absolute;
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: #7e57c2;
+      background: #4e92de;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -419,7 +421,7 @@
       transform: translate(-50%, -50%);
       z-index: 20;
       transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 0 rgba(126, 87, 194, 0.4);
+      box-shadow: 0 0 0 rgba(78, 146, 222, 0.4);
     }
     
     .custom-marker::after {
@@ -428,17 +430,38 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #d6c7f0;
+      background: #d1e6f7;
       transition: all 0.3s;
     }
     
     .custom-marker:hover {
       transform: translate(-50%, -50%) scale(1.8);
-      box-shadow: 0 0 10px rgba(126, 87, 194, 0.7);
+      box-shadow: 0 0 10px rgba(78, 146, 222, 0.7);
     }
     
     .custom-marker:hover::after {
-      background: #f1ecfd;
+      background: #f0f9ff;
+    }
+    
+    /* 高亮状态的标记点 - 修改为2倍放大（原为2.5） */
+    .highlighted-marker {
+      transform: translate(-50%, -50%) scale(2);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+      z-index: 25;
+    }
+    
+    .highlighted-marker::after {
+      background: #ffd700; /* 金色 */
+      width: 5px;
+      height: 5px;
+    }
+    
+    /* 高亮状态的标签 - 更新为更精致的效果 */
+    .highlighted-label {
+      background: linear-gradient(to right, #ffd700, #ffa000);
+      transform: scale(1.05);
+      transition: transform 0.3s;
+      z-index: 24;
     }
     
     /* 事件标签容器 - 放置在点的右上角 */
@@ -448,6 +471,7 @@
       transform: translate(8px, -100%);
       text-align: left;
       pointer-events: auto;
+      transition: all 0.3s;
     }
     
     @media (max-width: 768px) {
@@ -473,7 +497,7 @@
       #timeline {
         padding: 6px;
         gap: 8px;
-        border-radius: 30px;
+        border-radius: 0; /* 修改为直角 */
       }
       
       .time-item {
@@ -503,8 +527,8 @@
     
     <div id="title-bar" class="glass-effect">
       <div class="title-group">
-        <h1 id="title"><i class="fas fa-route"></i>三国演义路线图</h1>
-        <p id="subtitle">探索三国时期重要节点</p>
+        <h1 id="title"><i class="fas fa-route"></i>三国历史路线图</h1>
+        <p id="subtitle">探索三国时期重要历史节点</p>
       </div>
       <div id="controls">
         <button class="control-btn" id="toggleFly"><i class="fas fa-bolt"></i> 飞线效果</button>
@@ -733,14 +757,38 @@
         
         // 点击打开详细信息
         markerContainer.addEventListener("click", () => {
+          highlightSelectedMarker(index);
           showInfoPanel(p);
         });
         
         // 标签容器也绑定点击事件
         labelContainer.addEventListener("click", () => {
+          highlightSelectedMarker(index);
           showInfoPanel(p);
         });
       });
+      
+      // 清除所有高亮
+      function clearMarkerHighlights() {
+        markerContainers.forEach((container) => {
+          container.classList.remove('highlighted-marker');
+        });
+        document.querySelectorAll('.custom-label-container').forEach((container) => {
+          container.querySelector('.custom-label').classList.remove('highlighted-label');
+        });
+      }
+      
+      // 高亮选中的标记（使用优化后的高亮效果）
+      function highlightSelectedMarker(index) {
+        clearMarkerHighlights();
+        
+        // 添加高亮类到标记和标签
+        markerContainers[index].classList.add('highlighted-marker');
+        const labelContainer = document.querySelector(`.custom-label-container[data-index="${index}"]`);
+        if (labelContainer) {
+          labelContainer.querySelector('.custom-label').classList.add('highlighted-label');
+        }
+      }
       
       // 显示信息面板函数
       function showInfoPanel(p) {
@@ -793,7 +841,7 @@
         
         const path = document.createElementNS(svgNS, "path");
         path.setAttribute("class", "fly-line");
-        path.setAttribute("stroke", "#7e57c2");
+        path.setAttribute("stroke", "#4e92de");
         path.setAttribute("stroke-width", "2");
         path.setAttribute("stroke-dasharray", "8, 4");
         path.setAttribute("fill", "none");
@@ -811,7 +859,7 @@
         
         const arrow = document.createElementNS(svgNS, "polygon");
         arrow.setAttribute("points", "0 0, 8 3, 0 6");
-        arrow.setAttribute("fill", "#7e57c2");
+        arrow.setAttribute("fill", "#4e92de");
         
         marker.appendChild(arrow);
         defs.appendChild(marker);
@@ -896,17 +944,21 @@
           });
           item.classList.add('active-time');
           
+          // 高亮地图上的标记点
+          highlightSelectedMarker(index);
+          
           // 移动到对应的标记点并打开信息
           const point = pointObjs[index];
           map.panTo(point, {noAnimation: false});
           setTimeout(() => {
             showInfoPanel(points[index]);
-          }, 1000);
+          }, 300);
         });
       });
       
-      // 初始显示第一个事件详情
+      // 初始显示第一个事件详情并高亮
       if (points.length > 0) {
+        highlightSelectedMarker(0);
         showInfoPanel(points[0]);
       }
     }
