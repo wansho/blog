@@ -325,41 +325,8 @@
       flex: 1;
       font-size: 0.85rem;
     }
-    
-    #legend {
-      bottom: 120px;
-      right: 15px;
-      border-radius: 8px;
-      padding: 12px;
-      z-index: 10;
-      font-size: 11px;
-      max-width: 130px;
-    }
-    
-    .legend-title {
-      font-weight: bold;
-      color: #495057;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin: 6px 0;
-    }
-    
-    .legend-icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+
+
     
     .event-marker {
       width: 14px;
@@ -559,21 +526,6 @@
       </div>
     </div>
     
-    <div id="legend" class="glass-effect">
-      <div class="legend-title"><i class="fas fa-map-signs"></i> 图例说明</div>
-      <div class="legend-item">
-        <div class="legend-icon">
-          <div class="event-marker"></div>
-        </div>
-        <div>历史事件位置</div>
-      </div>
-      <div class="legend-item">
-        <div class="legend-icon">
-          <div class="fly-line-legend"></div>
-        </div>
-        <div>事件发展路线</div>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -591,93 +543,19 @@
       const points = [
         {
           name: "桃园三结义",
-          lng: 112.5,
-          lat: 34.6,
-          detail: "刘备、关羽、张飞于桃园结义，发誓同生共死。这一事件标志着三国鼎立局面的开端，为日后蜀汉政权的建立奠定了基础。",
+          lng: 115.983884,
+          lat: 39.491627,
           time: "公元184年",
-          ancientName: "涿郡",
-          description: "东汉末年，天下大乱。刘备、关羽和张飞在涿郡张飞庄后桃园，备下乌牛白马，祭告天地，焚香结拜为异姓兄弟，立誓：'同心协力，救困扶危；上报国家，下安黎庶。不求同年同月同日生，只愿同年同月同日死。'"
+          ancientName: "幽州涿郡涿县",
+          description: "幽州在三国时就是北京河北附近，西安河北琢州市"
         },
         {
-          name: "虎牢关之战",
-          lng: 113.4,
-          lat: 34.5,
-          detail: "关羽温酒斩华雄，张飞大战吕布，三英战吕布名扬天下。此战确立了三人在三国武力排行榜中的地位。",
-          time: "公元190年",
-          ancientName: "虎牢关",
-          description: "董卓专权乱政，以吕布为先锋，与十八路诸侯对峙于虎牢关。曹操联军方面，关羽在温酒未凉之时斩华雄；随后张飞、关羽、刘备三人合力大战吕布，吕布虽勇猛难敌，但也只能退走。此战为三国最著名的武将对决之一。"
-        },
-        {
-          name: "汜水关战役",
-          lng: 113.0,
-          lat: 34.5,
-          detail: "孙坚先攻汜水关，刘关张支援，击败董卓部队。此役展示了三国早期各势力联合作战的模式。",
-          time: "公元190年",
-          ancientName: "汜水关",
-          description: "孙坚率先攻打汜水关，遭遇华雄阻击。在粮草不足的困境下，曹操支持袁绍发檄文集结诸侯。刘备率关羽、张飞加入战斗，配合孙坚部队击败董卓守军。虽未完全攻下汜水关，但展示了联盟的力量，为后续讨伐董卓奠定基础。"
-        },
-        {
-          name: "官渡之战",
-          lng: 113.6,
-          lat: 35.3,
-          detail: "曹操以少胜多大败袁绍，奠定了统一北方的基础。",
-          time: "公元200年",
-          ancientName: "官渡",
-          description: "袁绍率十万大军南下，曹操仅有两万军队驻守官渡。曹操采纳谋士许攸之计，夜袭乌巢烧毁袁军粮草，导致袁绍大军溃败。此战使曹操成为北方最强大的军事集团。"
-        },
-        {
-          name: "赤壁之战",
-          lng: 113.9,
-          lat: 29.5,
-          detail: "孙刘联军火攻大败曹操水军，形成三国鼎立局面。",
-          time: "公元208年",
-          ancientName: "赤壁",
-          description: "曹操亲率二十万大军南下，意图统一江南。孙权、刘备联合抗曹，周瑜采纳黄盖火攻之计，以五极兵力击败曹操大军，烧毁曹军战船数百艘，使曹操北归，奠定了三国鼎立的基础。"
-        },
-        {
-          name: "合肥之战",
-          lng: 117.3,
-          lat: 31.8,
-          detail: "张辽八百壮士破吴军十万，奠定其五子良将之首地位。",
-          time: "公元215年",
-          ancientName: "合肥",
-          description: "孙权率十万大军攻打合肥，张辽率领八百精锐趁吴军立足未稳，夜间突袭吴营，在逍遥津大破吴军，杀得江南人人胆寒。此战确立了张辽在曹魏军事集团中的地位，也创下三国以少胜多的经典战例。"
-        },
-        {
-          name: "汉中之战",
-          lng: 107.0,
-          lat: 33.1,
-          detail: "刘备打败曹操，夺取汉中，奠定蜀汉基业。",
-          time: "公元219年",
-          ancientName: "定军山",
-          description: "刘备在定军山与夏侯渊对峙，黄忠乘高鼓噪攻下夏侯渊的军营，阵斩夏侯渊。随后曹操亲征汉中，刘备坚守不出，曹操因粮草不济无奈撤军。此战使得刘备夺取汉中，并在同年称汉中王，蜀汉达到鼎盛时期。"
-        },
-        {
-          name: "荆州之争",
-          lng: 112.2,
-          lat: 30.3,
-          detail: "关羽大意失荆州，败走麦城，蜀吴联盟破裂。",
-          time: "公元219年",
-          ancientName: "荆州",
-          description: "关羽率军北伐襄樊，水淹七军威震华夏。但吕蒙白衣渡江偷袭荆州，关羽后方失守，最终在麦城被擒杀。此战导致蜀汉失去荆州要地，同时标志着蜀吴联盟的破裂，三国格局发生变化。"
-        },
-        {
-          name: "夷陵之战",
-          lng: 111.4,
-          lat: 30.7,
-          detail: "刘备为报关羽之仇伐吴，被陆逊火烧连营。",
-          time: "公元222年",
-          ancientName: "猇亭",
-          description: "刘备亲率七十万大军伐吴，陆逊以逸待劳坚守不出。至夏季酷暑，蜀军避暑林中，陆逊趁势火烧连营四十余寨，大败蜀军。刘备退守白帝城，此战使蜀汉元气大伤，三国势力基本定型。"
-        },
-        {
-          name: "五丈原之战",
-          lng: 107.6,
-          lat: 34.3,
-          detail: "诸葛亮第六次北伐，最终命陨五丈原。",
-          time: "公元234年",
-          ancientName: "五丈原",
-          description: "诸葛亮屯兵五丈原与司马懿对峙，司马懿坚壁不战。诸葛亮送妇人衣物激将未果，最终积劳成疾病逝军中。此战标志着蜀汉北伐战略的终结，姜维虽继承遗志但未能扭转局势。"
+          name: "安喜县县尉",
+          lng: 115.001098,
+          lat: 38.525363,
+          time: "公元184年",
+          ancientName: "安喜县",
+          description: "镇压黄巾起义有功，刘备获得了第一个官职，在这里做县尉，就是公安局局长"
         }
       ];
 
