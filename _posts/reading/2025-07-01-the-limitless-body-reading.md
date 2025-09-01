@@ -4,7 +4,7 @@ title: "《无限可能的身体》"
 category: reading
 ---
 
-![](/assets/image/reading/无限可能的身体/douban.png)
+![](/assets/image/reading/the-limitless-body/douban.png)
 
 
 
